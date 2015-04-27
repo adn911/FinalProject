@@ -4,13 +4,16 @@ package org.foodbar.persistance.dao;
 import org.foodbar.persistance.entity.MenuItem;
 import org.foodbar.persistance.entity.Restaurant;
 import org.foodbar.persistance.entity.User;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by bakhtiar.galib on 2/8/15.
@@ -35,27 +38,34 @@ public class MenuItemDaoImpl implements MenuItemDao {
     }
 
     @Override
-    public List<MenuItem> getAllMenuItem() {
+    public Set<MenuItem> getAllMenuItem() {
 
-        return entityManager.createQuery("SELECT item FROM MenuItem AS item ORDER BY item.rating.overall", MenuItem.class).getResultList();
+        TypedQuery<MenuItem> query = entityManager.createQuery("SELECT item FROM MenuItem AS item ORDER BY item.rating.overall", MenuItem.class);
+        return new LinkedHashSet<MenuItem>(query.getResultList());
     }
 
     @Override
-    public List<MenuItem> getRestaurantMenuItems(int id) {
-        return entityManager.find(Restaurant.class,id).getMenuItems();
+    public Set<MenuItem> getRestaurantMenuItems(int id) {
+        return entityManager.find(Restaurant.class, id).getMenuItems();
     }
 
     @Override
     public MenuItem getMenuItem(int menuItemId) {
-
         return entityManager.find(MenuItem.class,menuItemId);
     }
 
     @Override
-    public List<MenuItem> searchMenuItemsByName(String itemName) {
+    public MenuItem getMenuItemWithAssociations(int menuItemId) {
+        MenuItem menuItem = entityManager.find(MenuItem.class, menuItemId);
+        Hibernate.initialize(menuItem.getReviews());
+        return menuItem;
+    }
+
+    @Override
+    public Set<MenuItem> searchMenuItemsByName(String itemName) {
         TypedQuery<MenuItem> query = entityManager.createQuery(" SELECT item FROM MenuItem AS item WHERE item.name LIKE :itemName ORDER BY item.rating.overall", MenuItem.class);
         query.setParameter("itemName","%"+itemName+"%");
-        return query.getResultList();
+        return new LinkedHashSet<MenuItem>(query.getResultList());
     }
 
     @Override

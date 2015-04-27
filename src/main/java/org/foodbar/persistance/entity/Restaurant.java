@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by GALIB on 4/18/2015.
@@ -26,26 +27,23 @@ public class Restaurant extends Persistent{
     @Lob
     private byte[] photo;
 
-
     @ManyToOne
     @JoinColumn(name = "category")
     private RestaurantCategory category = new RestaurantCategory();
 
-    @OneToMany(mappedBy = "restaurant",cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "restaurant",cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)
     @Fetch(FetchMode.SELECT)
     @BatchSize(size = 10)
-    private List<MenuItem> menuItems;
+    private Set<MenuItem> menuItems;
 
-    @OneToMany(mappedBy = "restaurant",cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "restaurant",cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)
     @Fetch(FetchMode.SELECT)
     @BatchSize(size = 10)
-    private List<RestaurantReview> reviews;
+    private Set<RestaurantReview> reviews;
 
-
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(name="branch", joinColumns=@JoinColumn(name="restaurant_id"))
-    private List<Branch> branches;
-
+    private Set<Branch> branches;
 
     private RestaurantRating rating ;
 
@@ -73,19 +71,6 @@ public class Restaurant extends Persistent{
         this.rating = rating;
     }
 
-    public List<Branch> getBranches() {
-        return branches;
-    }
-
-    public void setBranches(List<Branch> branches) {
-        this.branches = branches;
-    }
-
-
-    public List<MenuItem> getMenuItems() {
-        return menuItems;
-    }
-
     public RestaurantCategory getCategory() {
         return category;
     }
@@ -94,16 +79,28 @@ public class Restaurant extends Persistent{
         this.category = category;
     }
 
-    public void setMenuItems(List<MenuItem> menuItems) {
+    public Set<MenuItem> getMenuItems() {
+        return menuItems;
+    }
+
+    public void setMenuItems(Set<MenuItem> menuItems) {
         this.menuItems = menuItems;
     }
 
-    public List<RestaurantReview> getReviews() {
+    public Set<RestaurantReview> getReviews() {
         return reviews;
     }
 
-    public void setReviews(List<RestaurantReview> reviews) {
+    public void setReviews(Set<RestaurantReview> reviews) {
         this.reviews = reviews;
+    }
+
+    public Set<Branch> getBranches() {
+        return branches;
+    }
+
+    public void setBranches(Set<Branch> branches) {
+        this.branches = branches;
     }
 
     public String getName() {

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by GALIB on 4/24/2015.
@@ -27,16 +28,20 @@ public class RestaurantService {
         restaurantDao.addRestaurant(restaurant);
     }
 
-    public List<Restaurant> getAllRestaurant(){
+    public Set<Restaurant> getAllRestaurant(){
         return restaurantDao.getAllRestaurant();
     }
 
-    public List<Restaurant> getRestaurantsByCategory(String categoryName){
+    public Set<Restaurant> getRestaurantsByCategory(String categoryName){
         return restaurantDao.getRestaurantsByCategory(categoryName);
     }
 
     public Restaurant getRestaurant(int restaurantId){
         return restaurantDao.getRestaurant(restaurantId);
+    }
+
+    public Restaurant getRestaurantWithAssociations(int restaurantId){
+        return restaurantDao.getRestaurantWithAssociations(restaurantId);
     }
 
     public void removeRestaurant(Restaurant restaurant){

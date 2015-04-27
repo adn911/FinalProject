@@ -72,7 +72,7 @@ public class RestaurantController {
     public String showProfile(@PathVariable(value = "id") int id,Model model) {
         log.debug("At home page");
 
-        model.addAttribute("restaurant",restaurantService.getRestaurant(id));
+        model.addAttribute("restaurant",restaurantService.getRestaurantWithAssociations(id));
         model.addAttribute("newRestaurantReview",new RestaurantReview());
         model.addAttribute("newRestaurantBranch",new Branch());
 

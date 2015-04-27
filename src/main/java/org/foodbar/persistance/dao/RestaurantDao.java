@@ -3,6 +3,7 @@ package org.foodbar.persistance.dao;
 import org.foodbar.persistance.entity.*;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by bakhtiar.galib on 2/8/15.
@@ -11,11 +12,13 @@ public interface RestaurantDao {
 
     void addRestaurant(Restaurant restaurant);
 
-    List<Restaurant> getAllRestaurant();
+    Set<Restaurant> getAllRestaurant();
 
-    List<Restaurant> getRestaurantsByCategory(String categoryName);
+    Set<Restaurant> getRestaurantsByCategory(String categoryName);
 
     Restaurant getRestaurant(int restaurantId);
+
+    Restaurant getRestaurantWithAssociations(int restaurantId);
 
     void removeRestaurant(Restaurant restaurant);
 

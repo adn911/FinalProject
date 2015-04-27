@@ -4,6 +4,7 @@ import org.foodbar.persistance.entity.MenuItem;
 import org.foodbar.persistance.entity.Restaurant;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by bakhtiar.galib on 2/8/15.
@@ -12,13 +13,15 @@ public interface MenuItemDao {
 
     void addMenuItem(MenuItem menuItem);
 
-    List<MenuItem> getAllMenuItem();
+    Set<MenuItem> getAllMenuItem();
 
-    List<MenuItem> getRestaurantMenuItems(int id);
+    Set<MenuItem> getRestaurantMenuItems(int id);
 
     MenuItem getMenuItem(int menuItemId);
 
-    List<MenuItem> searchMenuItemsByName (String itemName);
+    MenuItem getMenuItemWithAssociations(int menuItemId);
+
+    Set<MenuItem> searchMenuItemsByName (String itemName);
 
     void removeMenuItem(int menuItemId);
 }

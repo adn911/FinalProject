@@ -2,6 +2,7 @@ package org.foodbar.persistance.entity;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by GALIB on 4/18/2015.
@@ -23,7 +24,7 @@ public class MenuItem extends Persistent{
     private MenuItemRating rating;
 
     @OneToMany(mappedBy = "menuItem",cascade = CascadeType.REMOVE)
-    private List<MenuItemReview> reviews;
+    private Set<MenuItemReview> reviews;
 
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
@@ -47,11 +48,11 @@ public class MenuItem extends Persistent{
         this.rating = rating;
     }
 
-    public List<MenuItemReview> getReviews() {
+    public Set<MenuItemReview> getReviews() {
         return reviews;
     }
 
-    public void setReviews(List<MenuItemReview> reviews) {
+    public void setReviews(Set<MenuItemReview> reviews) {
         this.reviews = reviews;
     }
 

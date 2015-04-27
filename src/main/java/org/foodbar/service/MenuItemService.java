@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by GALIB on 4/24/2015.
@@ -27,7 +28,7 @@ public class MenuItemService {
         menuItemDao.addMenuItem(menuItem);
     }
 
-    public List<MenuItem> getAllMenuItem(){
+    public Set<MenuItem> getAllMenuItem(){
         return menuItemDao.getAllMenuItem();
     }
 
@@ -35,15 +36,19 @@ public class MenuItemService {
         return menuItemDao.getMenuItem(menuItemId);
     }
 
-    public List<MenuItem> searchMenuItemsByName (String itemName){
+    public Set<MenuItem> searchMenuItemsByName (String itemName){
         return menuItemDao.searchMenuItemsByName(itemName);
+    }
+
+    public MenuItem getMenuItemWithAssociations(int menuItemId){
+        return menuItemDao.getMenuItemWithAssociations(menuItemId);
     }
 
     public void removeMenuItem(int menuItemId){
         menuItemDao.removeMenuItem(menuItemId);
     }
 
-    public List<MenuItem> getRestaurantMenuItems(int id){
+    public Set<MenuItem> getRestaurantMenuItems(int id){
         return menuItemDao.getRestaurantMenuItems(id);
     }
 

@@ -2,13 +2,16 @@ package org.foodbar.persistance.dao;
 
 
 import org.foodbar.persistance.entity.*;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by bakhtiar.galib on 2/8/15.
@@ -37,15 +40,16 @@ public class RestaurantDaoImpl implements RestaurantDao {
     }
 
     @Override
-    public List<Restaurant> getAllRestaurant() {
-        return entityManager.createQuery("SELECT R FROM Restaurant AS R ORDER BY R.rating.overall", Restaurant.class).getResultList();
+    public Set<Restaurant> getAllRestaurant() {
+        TypedQuery<Restaurant> query = entityManager.createQuery("SELECT R FROM Restaurant AS R ORDER BY R.rating.overall", Restaurant.class);
+        return new LinkedHashSet<Restaurant>(query.getResultList());
     }
 
     @Override
-    public List<Restaurant> getRestaurantsByCategory(String categoryName) {
+    public Set<Restaurant> getRestaurantsByCategory(String categoryName) {
         TypedQuery<Restaurant> query = entityManager.createQuery("SELECT R FROM Restaurant AS R WHERE R.category.name = :category ORDER BY R.rating.overall", Restaurant.class);
         query.setParameter("category",categoryName);
-        return query.getResultList();
+        return new LinkedHashSet<Restaurant>(query.getResultList());
     }
 
     @Override
@@ -54,13 +58,24 @@ public class RestaurantDaoImpl implements RestaurantDao {
     }
 
     @Override
+    public Restaurant getRestaurantWithAssociations(int restaurantId) {
+        Restaurant restaurant = getRestaurant(restaurantId);
+
+        Hibernate.initialize(restaurant.getMenuItems());
+        Hibernate.initialize(restaurant.getReviews());
+        Hibernate.initialize(restaurant.getBranches());
+
+        return restaurant;
+    }
+
+    @Override
     public void removeRestaurant(Restaurant restaurant) {
         entityManager.remove(restaurant);
     }
 
-    private User getSingleResultOrNull(TypedQuery<User> query) {
+    private Restaurant getSingleResultOrNull(TypedQuery<Restaurant> query) {
         query.setMaxResults(1);
-        List<User> list = query.getResultList();
+        List<Restaurant> list = query.getResultList();
 
         if (list.isEmpty()) {
             return null;

@@ -34,7 +34,7 @@ public class MenuItemController {
     public String showMenuItemDetails(@PathVariable(value = "id") int itemId, Model model) {
         log.debug("At home page");
 
-        model.addAttribute("item",menuItemService.getMenuItem(itemId));
+        model.addAttribute("item",menuItemService.getMenuItemWithAssociations(itemId));
 
         return "menuItemDetails";
     }
@@ -61,7 +61,7 @@ public class MenuItemController {
     public String removeMenuItem(@RequestParam(value = "menuItemId") int menuItemId, Model model) {
         log.debug("At home page");
 
-        MenuItem menuItem = menuItemService.getMenuItem(menuItemId);
+        MenuItem menuItem = menuItemService.getMenuItemWithAssociations(menuItemId);
         menuItemService.removeMenuItem(menuItemId);
 
         return "redirect:/restaurants/profile/"
