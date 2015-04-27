@@ -43,10 +43,8 @@ public class SignupController {
     public String processSignup(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, @RequestParam(value = "picture", required = false) MultipartFile image, Model model) throws IOException {
 
         if (!result.hasErrors() ) {
-
             userService.addUser(newUser);
             model.addAttribute("success", 1);
-
         } else {
             model.addAttribute("error", 1);
         }

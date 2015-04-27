@@ -28,9 +28,6 @@ public class AboutUsController {
 
     private static final Logger log = LoggerFactory.getLogger(AboutUsController.class);
 
-    @Autowired
-    private ServletContext servletContext;
-
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public String showAboutUs(Model model) {
 

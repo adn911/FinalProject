@@ -72,10 +72,9 @@ public class MenuItemController {
     public String browseItems(Model model) {
         log.debug("At home page");
 
+        model.addAttribute("items",menuItemService.getAllMenuItem());
+
         return "menuItemsList";
     }
-
-
-
 
 }

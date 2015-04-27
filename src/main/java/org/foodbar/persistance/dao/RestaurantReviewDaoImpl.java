@@ -31,6 +31,7 @@ public class RestaurantReviewDaoImpl implements RestaurantReviewDao {
     @Override
     public void addReview(RestaurantReview restaurantReview) {
         entityManager.persist(restaurantReview);
+        entityManager.getReference(Restaurant.class,restaurantReview.getRestaurant().getId()).updateRating(restaurantReview.getRating());
     }
 
     @Override

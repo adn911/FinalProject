@@ -27,7 +27,8 @@
         </div>
         <div class="panel-body">
 
-            <sf:form action="/FoodBar/menuItems/add" method="POST" enctype="multipart/form-data" commandName="newMenuItem">
+            <sf:form action="/FoodBar/menuItems/add" method="POST" enctype="multipart/form-data"
+                     commandName="newMenuItem">
 
                 <input id="restaurant.id" name="restaurant.id" class="form-control" type="hidden"
                        value="${restaurant.id}"/>

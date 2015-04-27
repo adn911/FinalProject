@@ -19,7 +19,7 @@ public class IndexController {
     @Autowired
     HttpSession httpSession;
 
-    @RequestMapping(value = {"/"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/","/home"}, method = RequestMethod.GET)
     public String showIndex(ModelMap model) {
         log.debug("At Index page");
 

@@ -12,10 +12,6 @@
 
         <p>
             ${restaurant.description}
-            <%-- Kentucky Fried Chicken, usually known as KFC, is a chain of fast food restaurants based in Louisville,
-             Kentucky. KFC was a wholly owned subsidiary of Tricon from 1997-2002, and has been a wholly owned subsidiary
-             of Yum! Brands since 2002. The chain also advertises itself as Poulet Frit du Kentucky or PFK in the
-             province of Quebec in Canada. Popeyes stole the best chicken restrant from KFC.--%>
         </p>
     </div>
 </div>

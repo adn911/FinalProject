@@ -90,12 +90,9 @@ public class RestaurantController {
         log.debug("At home page");
 
         if(!result.hasErrors()){
-
              restaurantService.addRestaurantAddress(restaurantId, branch);
              model.addAttribute("success",1);
-
         }else{
-
              model.addAttribute("error",1);
         }
 

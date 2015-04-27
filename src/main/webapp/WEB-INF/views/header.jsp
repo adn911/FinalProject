@@ -75,10 +75,19 @@
 
             </ul>
 
-            <span class="pull-right" style="margin-top: -80px;">
-                <a href="/FoodBar/login" class="btn btn-default">login</a>
-                <a href="/FoodBar/signup" class="btn btn-default">signUp</a>
-            </span>
+            <c:if test="${!empty user}">
+                <span class="pull-right" style="margin-top: -80px;">
+                    <a href="/FoodBar/logout" class="btn btn-default">logout</a>
+                </span>
+            </c:if>
+
+            <c:if test="${empty user}">
+                <span class="pull-right" style="margin-top: -80px;">
+                    <a href="/FoodBar/login" class="btn btn-default">login</a>
+                    <a href="/FoodBar/signup" class="btn btn-default">signUp</a>
+                </span>
+            </c:if>
+
 
 
         </div>

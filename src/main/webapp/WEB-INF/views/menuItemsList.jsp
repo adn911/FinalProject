@@ -25,9 +25,9 @@
 
                     <hr>
 
-                    <%@include file="foodItem.jsp" %>
-
-                    <%@include file="foodItem.jsp" %>
+                    <c:forEach items="${items}" var="item">
+                        <%@include file="foodItem.jsp" %>
+                    </c:forEach>
 
                 </div>
             </div>

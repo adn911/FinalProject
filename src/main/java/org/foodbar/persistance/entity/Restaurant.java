@@ -59,7 +59,10 @@ public class Restaurant extends Persistent{
     }
 
     public void updateRating(RestaurantRating restaurantRating){
-        System.out.println("Restaurant rating "+rating.getOverall()+" "+restaurantRating.getOverall());
+        System.out.println("Number of restaurant reviews "+reviews.size());
+        /*this.rating.setEnvironment(this.rating.getEnvironment()+restaurantRating.getEnvironment());
+        this.rating.setFoodQuality(this.rating.getFoodQuality()+restaurantRating.getFoodQuality());
+        System.out.println("Restaurant rating "+rating.getOverall()+" "+restaurantRating.getOverall());*/
     }
 
     public RestaurantRating getRating() {

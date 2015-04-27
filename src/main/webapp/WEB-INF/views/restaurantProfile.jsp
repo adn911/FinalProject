@@ -40,9 +40,11 @@
                         <div class="row">
 
                             <div class="panel panel-info">
+
                                 <div class="panel-heading">
                                     <h3 class="panel-title text-center">Menu Items</h3>
                                 </div>
+
                                 <div class="panel-body">
 
                                     <c:forEach items="${restaurant.menuItems}" var="item">
@@ -55,7 +57,7 @@
                                         Add New MenuItem
                                     </Button>
 
-                                    <%@include file="addMenuItem.jsp"%>
+                                    <%@include file="addMenuItem.jsp" %>
 
                                 </div>
 
@@ -77,7 +79,7 @@
                                 </div>
                                 <div class="panel-body">
 
-                                    <%@include file="addRestaurantReview.jsp"%>
+                                    <%@include file="addRestaurantReview.jsp" %>
 
                                     <c:forEach items="${restaurant.reviews}" var="review">
                                         <%@include file="restaurantReview.jsp" %>
@@ -112,8 +114,12 @@
                                             <c:forEach items="${restaurant.branches}" var="branch">
 
                                                 <li class="list-group-item">
-                                                    <p> <b>Branch Name </b>: ${branch.name}<br> </p>
-                                                    <p><b>Address </b>: ${branch.street} ${branch.area}, ${branch.city}<br> </p>
+                                                    <p><b>Branch Name </b>: ${branch.name}<br></p>
+
+                                                    <p>
+                                                        <b>Address </b>: ${branch.street} ${branch.area}, ${branch.city}<br>
+                                                    </p>
+
                                                     <p><b>Contact No: </b> ${branch.contactNo}</p>
                                                 </li>
 

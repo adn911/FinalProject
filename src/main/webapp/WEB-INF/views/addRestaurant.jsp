@@ -7,7 +7,7 @@
 --%>
 
 
-<div id="addRestaurant" class="col-md-12">
+<div id="addRestaurant" class="col-md-12" style="display: none;">
 
     <c:if test="${!empty param.success}">
         <div class="alert alert-success" role="alert">RESTAURANT SIGNUP SUCCESSFULL.</div>

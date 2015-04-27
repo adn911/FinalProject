@@ -1,5 +1,7 @@
 package org.foodbar.controller;
 
+import org.foodbar.persistance.entity.User;
+import org.foodbar.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,9 @@ public class LoginController {
     @Autowired
     private HttpSession httpSession;
 
+    @Autowired
+    private UserService userService;
+
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
     public String showLogin(Model model) {
@@ -40,7 +45,7 @@ public class LoginController {
 
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.POST)
     public String processLogin(@RequestParam("email") String email, @RequestParam("password") String password, Model model) {
-       /* User user = userService.loginUser(email, password);
+        User user = userService.loginUser(email, password);
 
         if (user != null) {
             model.addAttribute("user", user);
@@ -48,7 +53,7 @@ public class LoginController {
             return "redirect:/home";
         }
 
-        model.addAttribute("error", messageSource.getMessage("error.incorrect.credential", null, Locale.getDefault()));*/
+        model.addAttribute("error", messageSource.getMessage("error.incorrect.credential", null, Locale.getDefault()));
 
         return "login";
     }

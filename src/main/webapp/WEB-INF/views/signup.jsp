@@ -27,9 +27,11 @@
             </c:if>
 
             <div class="panel panel-info">
+
                 <div class="panel-heading">
                     <h3 class="panel-title text-center">Signup</h3>
                 </div>
+
                 <div class="panel-body">
 
                     <sf:form action="/FoodBar/signup" method="POST" commandName="newUser"
@@ -38,17 +40,19 @@
                         <input id="role" name="role" class="form-control" type="hidden" value="ROLE_USER"
                                required/> <br>
 
+                        <label>Username</label><br>
                         <sf:errors path="username"/><br>
-                        <input id="username" name="username" class="form-control" placeholder="Username" type="text"
+                        <input id="username" name="username" class="form-control" placeholder="Enter Username" type="text"
                                required/> <br>
 
-
+                        <label>Email</label><br>
                         <sf:errors path="email"/><br>
-                        <input id="email" name="email" class="form-control" placeholder="Email" type="text"
+                        <input id="email" name="email" class="form-control" placeholder="Enter Email" type="text"
                                required/><br>
 
+                        <label>Password</label><br>
                         <sf:errors path="password"/><br>
-                        <input id="password" name="password" class="form-control" placeholder="Password" type="password"
+                        <input id="password" name="password" class="form-control" placeholder="Enter Password" type="password"
                                required/><br>
 
                         <%--<p>Profile Photo</p>
